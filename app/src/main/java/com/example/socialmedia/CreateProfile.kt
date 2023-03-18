@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -99,11 +100,17 @@ class CreateProfile : AppCompatActivity() {
                 profile["branch"] = branchStr
                 profile["year"] = yearStr
                 profile["about"] = aboutStr
-
+                docRef = ff.collection("users").document()
                 docRef.set(profile).addOnSuccessListener {
                     Handler(Looper.getMainLooper()).postDelayed({
-                        val intent = Intent(this,HomeFragment::class.java)
-                        startActivity(intent)
+//                        val intent = Intent(this,HomeFragment()::class.java)
+//                        startActivity(intent)
+                          val fragM = supportFragmentManager.beginTransaction()
+                        fragM.replace(R.id.frames,HomeFragment())
+                        fragM.addToBackStack(null)
+                        fragM.commit()
+
+
                     },2000)
                 }
             }
