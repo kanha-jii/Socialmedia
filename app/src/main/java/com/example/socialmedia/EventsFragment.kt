@@ -23,5 +23,4 @@ class EventsFragment : Fragment() {
 
         return view
     }
-
 }
