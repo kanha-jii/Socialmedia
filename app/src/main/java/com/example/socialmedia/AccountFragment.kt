@@ -17,6 +17,8 @@ class AccountFragment : Fragment(), View.OnClickListener  {
         val view = inflater.inflate(R.layout.account_fragment,container,false)
         val btn: Button = view.findViewById(R.id.btn_edit_profile)
         btn.setOnClickListener(this)
+        val btn2: Button = view.findViewById(R.id.btn_out)
+        btn2.setOnClickListener(this)
         return view
 
     }
@@ -26,6 +28,10 @@ class AccountFragment : Fragment(), View.OnClickListener  {
         when (v?.id) {
             R.id.btn_edit_profile -> {
                 val intent = Intent(activity?.application ,CreateProfile::class.java)
+                startActivity(intent)
+            }
+            R.id.btn_out -> {
+                val intent = Intent(activity?.application ,RegisterActivity::class.java)
                 startActivity(intent)
             }
         }
