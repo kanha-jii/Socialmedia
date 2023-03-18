@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 
-@Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
