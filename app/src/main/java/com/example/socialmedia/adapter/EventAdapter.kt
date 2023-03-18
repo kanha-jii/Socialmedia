@@ -11,7 +11,7 @@ import com.example.socialmedia.loadImage
 
 class EventAdapter : RecyclerView.Adapter<MyViewHolder>() {
 
-    private val myDataList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+    private lateinit var myDataList: List<String>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
@@ -25,6 +25,10 @@ class EventAdapter : RecyclerView.Adapter<MyViewHolder>() {
 
     override fun getItemCount(): Int {
         return myDataList.size
+    }
+
+    fun setList(list: List<String>) {
+        myDataList = list
     }
 }
 

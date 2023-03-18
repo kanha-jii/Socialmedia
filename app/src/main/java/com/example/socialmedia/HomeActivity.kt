@@ -7,6 +7,9 @@ import com.example.socialmedia.fragments.EventsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
+
+     val myDataList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)

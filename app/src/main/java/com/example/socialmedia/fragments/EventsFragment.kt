@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.socialmedia.HomeActivity
 import com.example.socialmedia.R
 import com.example.socialmedia.adapter.EventAdapter
 
@@ -35,6 +36,8 @@ class EventsFragment : Fragment() {
 
         createEvent.setOnClickListener {
             Toast.makeText(context, "create event ", Toast.LENGTH_SHORT).show()
+             var fragmet  = CreateEventFragment()
+
         }
 
 
@@ -44,6 +47,7 @@ class EventsFragment : Fragment() {
         val myRecyclerView =  view.findViewById<RecyclerView>(R.id.listRV)
         var myAdapter = EventAdapter()
         myRecyclerView.adapter = myAdapter
+        myAdapter.setList((activity as HomeActivity).myDataList)
         myRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
