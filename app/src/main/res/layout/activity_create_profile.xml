@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".CreateProfile">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create profile"
+        android:textSize="30sp"
+        android:textColor="@color/all_red"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="75dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_cp"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            />
+    </androidx.cardview.widget.CardView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="name"
+        android:layout_margin="4dp"
+        android:textColor="@color/black"
+        android:id="@+id/et_name_cp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="course"
+        android:layout_margin="4dp"
+        android:textColor="@color/black"
+        android:id="@+id/et_course_cp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Branch(optional)"
+        android:layout_margin="4dp"
+        android:textColor="@color/black"
+        android:id="@+id/et_branch_cp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="persuing year"
+        android:layout_margin="4dp"
+        android:textColor="@color/black"
+        android:id="@+id/et_year_cp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="about"
+        android:layout_margin="4dp"
+        android:textColor="@color/black"
+        android:id="@+id/et_about_cp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save profile"
+        android:background="@color/orange"
+        android:textSize="20sp"
+        android:id="@+id/btn_cp"
+        />
+
+
+
+</LinearLayout>

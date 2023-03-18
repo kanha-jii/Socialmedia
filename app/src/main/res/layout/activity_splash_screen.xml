@@ -18,17 +18,18 @@
 
     <TextView
         android:id="@+id/splash_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="254dp"
+        android:layout_height="37dp"
         android:text="SOCIAL MEDIA APP"
         android:textColor="@color/all_red"
         android:textSize="30sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintVertical_bias="0.832" />
 
     <TextView
         android:id="@+id/team_geeks"
