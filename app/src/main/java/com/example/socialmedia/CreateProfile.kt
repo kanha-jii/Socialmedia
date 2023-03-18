@@ -20,14 +20,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import com.squareup.picasso.Picasso
 
 class CreateProfile : AppCompatActivity() {
     private val ff:FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -129,7 +126,7 @@ class CreateProfile : AppCompatActivity() {
             // There are no request codes
             val data: Intent? = result.data
             imageUri = data?.data!!
-            Picasso.get().load(imageUri).into(imgView)
+           // Picasso.get().load(imageUri).into(imgView)
 
         }
     }
