@@ -9,7 +9,11 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenNew : AppCompatActivity() {
+    /*override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash_screen_new)
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,4 +42,5 @@ class SplashScreen : AppCompatActivity() {
             finish()
         }, 3000)
     }
+
 }

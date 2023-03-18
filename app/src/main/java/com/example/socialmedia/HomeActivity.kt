@@ -3,7 +3,7 @@ package com.example.socialmedia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-//import androidx.fragment.app.Fragment
+import com.example.socialmedia.fragments.EventsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
                     setFragment(SearchFragment())
                 }
                 R.id.events -> {
-                   // setFragment(EventsFragment())
+                   setFragment(EventsFragment())
                 }
                 R.id.profile_bottom -> {
                     setFragment(AccountFragment())
