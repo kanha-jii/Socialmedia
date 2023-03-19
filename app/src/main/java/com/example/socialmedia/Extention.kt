@@ -1,6 +1,6 @@
 package com.example.socialmedia
 
-import android.widget.ImageView
+import  android.widget.ImageView
 import com.bumptech.glide.Glide
 
 
