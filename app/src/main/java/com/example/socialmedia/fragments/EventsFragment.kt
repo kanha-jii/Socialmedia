@@ -89,7 +89,7 @@ class EventsFragment : Fragment() {
             val email = user?.email
             createEvent.isVisible = email == "kanha@gmail.com"
 
-            if(email == "kanha@gmail.com") {
+            if(email == "kanha@gmail.com" || email=="jkjk@gmail.com") {
                 val storage = FirebaseStorage.getInstance()
 
 
