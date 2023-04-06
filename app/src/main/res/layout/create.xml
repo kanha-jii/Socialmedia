@@ -27,6 +27,7 @@
         android:drawableStart="@drawable/custom_email_input"
         android:hint="   Event Name"
         android:textColorHint="@color/grey"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:layout_editor_absoluteX="-16dp" />
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
         android:hint="   fees"
+        android:textColor="@color/white"
         android:textColorHint="@color/grey"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:layout_editor_absoluteX="0dp" />
@@ -49,6 +51,7 @@
         android:layout_marginTop="212dp"
         android:drawableStart="@drawable/rount_et"
         android:hint="   date"
+        android:textColor="@color/white"
         android:textColorHint="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

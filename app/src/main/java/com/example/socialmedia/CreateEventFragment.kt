@@ -66,6 +66,12 @@ class CreateEventFragment :Fragment() {
                 val btn = view.findViewById<Button>(R.id.upload)
                 btn.setOnClickListener {
                     uploadData()
+//                    val rr = EventsFragment()
+//                    var md = ModelClass()
+//                    md.img = imageUri
+//                    md.eventName = "ef"
+//                    rr.ii = rr.ii+md
+//                    rr.myRecyclerView.adapter?.notifyDataSetChanged()
 
                     Toast.makeText(context, "successful upload", Toast.LENGTH_SHORT).show()
                     val fragM = fragmentManager?.beginTransaction()
@@ -73,8 +79,6 @@ class CreateEventFragment :Fragment() {
                     fragM?.addToBackStack(null)
                     fragM?.commit()
                 }
-
-
             }
         }
 
@@ -89,12 +93,6 @@ class CreateEventFragment :Fragment() {
 //            launcher.launch(intent)
             resultLauncher.launch(intent)
         }
-
-
-
-
-
-
         return view
 
     }

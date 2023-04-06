@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -126,8 +127,9 @@ class CreateProfile : AppCompatActivity() {
             // There are no request codes
             val data: Intent? = result.data
             imageUri = data?.data!!
-           // Picasso.get().load(imageUri).into(imgView)
-
+//            Picasso.get().load(imageUri).into(imgView)
+            val glide = Glide.with(this)
+            glide.load(imageUri).into(imgView)
         }
     }
     private fun getFileExt(uri:Uri): String? {

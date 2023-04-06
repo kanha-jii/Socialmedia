@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.socialmedia.ModelClass
 import com.example.socialmedia.R
 import com.example.socialmedia.loadImage
 
-class EventAdapter(val items:List<String>) : RecyclerView.Adapter<MyViewHolder>() {
+class EventAdapter(private val items:MutableList<ModelClass>) : RecyclerView.Adapter<MyViewHolder>() {
 
-    private lateinit var myDataList: List<String>
+//    private var myDataList: List<ModelClass> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
@@ -24,24 +25,33 @@ class EventAdapter(val items:List<String>) : RecyclerView.Adapter<MyViewHolder>(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val data = myDataList[position]
+//        val data = myDataList[position]
+        val data = items[position]
         holder.bind(data)
     }
 
     override fun getItemCount(): Int {
-        return myDataList.size
+//        return myDataList.size
+        return items.size
+    }
+    public fun addData(newData: ModelClass) {
+        items.add(newData)
+        notifyDataSetChanged()
     }
 
-    fun setList(list: List<String>) {
-        myDataList = list
-    }
+//    fun setList(list: List<String>) {
+//        myDataList = list
+//    }
 }
 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(data: String) {
-        itemView.findViewById<TextView>(R.id.itemName).text = data
-//        itemView.findViewById<ImageView>(R.id.itemImg).loadImage("")
+    fun bind(data: ModelClass) {
+        itemView.findViewById<TextView>(R.id.itemName).text = data.eventName
+        itemView.findViewById<ImageView>(R.id.itemImg).loadImage(data.img.toString())
     }
+//    val img = itemView.findViewById<ImageView>(R.id.itemImg)
+//    val txt = itemView.findViewById<TextView>(R.id.itemName)
+
 }
 interface MyViewHolderItemClicked {
     fun onItemClicked(item: String)
