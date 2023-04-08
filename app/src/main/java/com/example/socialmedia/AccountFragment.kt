@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 
 class AccountFragment : Fragment(), View.OnClickListener  {
     override fun onCreateView(
@@ -20,7 +21,6 @@ class AccountFragment : Fragment(), View.OnClickListener  {
         val btn2: Button = view.findViewById(R.id.btn_out)
         btn2.setOnClickListener(this)
         return view
-
     }
 
 
@@ -31,6 +31,7 @@ class AccountFragment : Fragment(), View.OnClickListener  {
                 startActivity(intent)
             }
             R.id.btn_out -> {
+                FirebaseAuth.getInstance().signOut()
                 val intent = Intent(activity?.application ,RegisterActivity::class.java)
                 startActivity(intent)
             }

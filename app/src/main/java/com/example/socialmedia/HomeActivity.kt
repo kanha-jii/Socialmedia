@@ -1,17 +1,12 @@
 package com.example.socialmedia
 
-import android.icu.lang.UCharacter.IndicPositionalCategory.LEFT_AND_RIGHT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ItemTouchHelper.LEFT
-import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import com.example.socialmedia.fragments.EventsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
-
-     val myDataList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
                     setFragment(SearchFragment())
                 }
                 R.id.events -> {
-                   setFragment(EventsFragment(LEFT_AND_RIGHT))
+                   setFragment(EventsFragment())
                 }
                 R.id.profile_bottom -> {
                     setFragment(AccountFragment())

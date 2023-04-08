@@ -2,14 +2,11 @@ package com.example.socialmedia.fragments
 
 
 import android.icu.lang.UCharacter.IndicPositionalCategory.*
-import android.net.Uri
 import android.os.Bundle
-import android.view.Display.Mode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -26,12 +23,10 @@ import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.storage.FirebaseStorage
 
-class EventsFragment(swipeDirs: Int) : Fragment() {
+class EventsFragment() : Fragment() {
 
 //        var codeExecuted = false
-    public lateinit var ii:MutableList<ModelClass>
     public lateinit var myRecyclerView:RecyclerView
     private lateinit var myAdapter:EventAdapter
     private val db = FirebaseFirestore.getInstance()
@@ -40,7 +35,6 @@ class EventsFragment(swipeDirs: Int) : Fragment() {
     private var president:Boolean = false
 
 
-    lateinit var imageUri: Uri
 //    val dialog = context?.let { it1 -> Dialog(it1) }
 
     override fun onCreateView(

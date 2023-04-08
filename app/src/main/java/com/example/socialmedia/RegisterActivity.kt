@@ -12,8 +12,6 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -89,7 +87,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun saveInfo(emailStr : String,passStr:String) {
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val userRef : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
-
     }
 
 

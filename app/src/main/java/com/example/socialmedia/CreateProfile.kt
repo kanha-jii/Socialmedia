@@ -33,7 +33,6 @@ class CreateProfile : AppCompatActivity() {
     private lateinit var  sr:StorageReference
     private lateinit var  dr:DatabaseReference
     private lateinit var  imgView:ImageView
-    private lateinit var  uri:Uri
     private lateinit var  imageUri:Uri
     private lateinit var  docRef:DocumentReference
 
@@ -92,7 +91,7 @@ class CreateProfile : AppCompatActivity() {
             if (task.isSuccessful) {
                 val downloadUri = task.result
                 Log.d("STORAGE_UTIL", "downloadUri: " + downloadUri)
-                var profile: HashMap<String, String> = HashMap<String, String>()
+                val profile: HashMap<String, String> = HashMap<String, String>()
                 profile["name"] = nameStr
                 profile["course"] = courseStr
                 profile["branch"] = branchStr
