@@ -1,8 +1,11 @@
 package com.example.socialmedia
 
+import android.icu.lang.UCharacter.IndicPositionalCategory.LEFT_AND_RIGHT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper.LEFT
+import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import com.example.socialmedia.fragments.EventsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -25,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
                     setFragment(SearchFragment())
                 }
                 R.id.events -> {
-                   setFragment(EventsFragment())
+                   setFragment(EventsFragment(LEFT_AND_RIGHT))
                 }
                 R.id.profile_bottom -> {
                     setFragment(AccountFragment())

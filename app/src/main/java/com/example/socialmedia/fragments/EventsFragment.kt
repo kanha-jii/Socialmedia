@@ -1,7 +1,7 @@
 package com.example.socialmedia.fragments
 
-import android.app.Dialog
-import android.content.Intent
+
+import android.icu.lang.UCharacter.IndicPositionalCategory.*
 import android.net.Uri
 import android.os.Bundle
 import android.view.Display.Mode
@@ -9,25 +9,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.manager.SupportRequestManagerFragment
+
 import com.example.socialmedia.CreateEventFragment
 import com.example.socialmedia.ModelClass
 import com.example.socialmedia.R
 import com.example.socialmedia.adapter.EventAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.core.EventTarget
+
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 
-class EventsFragment : Fragment() {
+class EventsFragment(swipeDirs: Int) : Fragment() {
 
 //        var codeExecuted = false
     public lateinit var ii:MutableList<ModelClass>
@@ -36,6 +37,7 @@ class EventsFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var adapter:EventAdapter
     private val eventsRef = db.collection("events")
+    private var president:Boolean = false
 
 
     lateinit var imageUri: Uri
@@ -83,6 +85,26 @@ class EventsFragment : Fragment() {
 //           createEvent.text = dia.view?.findViewById<TextView>(R.id.blank)?.text ?: "hii"
 //            createEvent.text = dia.dialog?.findViewById<TextView>(R.id.blank)?.text ?: "hii"
         }
+        val itemTouchHelper by lazy{
+            val simpleItemTouchHelper = object : SimpleCallback(0, LEFT_AND_RIGHT) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    adapter.deleteItem(viewHolder.absoluteAdapterPosition)
+                }
+            }
+            ItemTouchHelper(simpleItemTouchHelper)
+
+        }
+        if(president) {
+            itemTouchHelper.attachToRecyclerView(myRecyclerView)
+        }
     }
 
 
@@ -93,6 +115,9 @@ class EventsFragment : Fragment() {
         user.let {
             val email = user?.email
             createEvent.isVisible = email == "kanha@gmail.com"
+            if(email == "kanha@gmail.com") {
+                president = true
+            }
 
 //            if(email == "kanha@gmail.com" || email=="jkjk@gmail.com") {
 //                val storage = FirebaseStorage.getInstance()

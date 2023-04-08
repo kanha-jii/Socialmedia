@@ -76,7 +76,9 @@ class EventAdapter(options: FirestoreRecyclerOptions<ModelClass>) :
         model.eventImage?.let { holder.eventImg.loadImage(it) }
         holder.eventNam.text = model.eventName
     }
-
+    fun deleteItem(position: Int) {
+        snapshots.getSnapshot(position).reference.delete()
+    }
 
 
 }
