@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.socialmedia.ModelClass
 import com.example.socialmedia.R
 import com.example.socialmedia.loadImage
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class EventAdapter(private val items:MutableList<ModelClass>) : RecyclerView.Adapter<MyViewHolder>() {
+/*class EventAdapter(private val items:MutableList<ModelClass>) : RecyclerView.Adapter<MyViewHolder>() {
 
 //    private var myDataList: List<ModelClass> = ArrayList()
 
@@ -56,5 +58,26 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 interface MyViewHolderItemClicked {
     fun onItemClicked(item: String)
 }
+*/
 
+class EventAdapter(options: FirestoreRecyclerOptions<ModelClass>) :
+        FirestoreRecyclerAdapter<ModelClass,EventAdapter.MyViewHolder>(options) {
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
+        val eventImg = itemView.findViewById<ImageView>(R.id.itemImg)
+        val eventNam = itemView.findViewById<TextView>(R.id.itemName)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
+        return MyViewHolder(view)
+    }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: ModelClass) {
+        // bind data to views inside view holder
+        model.eventImage?.let { holder.eventImg.loadImage(it) }
+        holder.eventNam.text = model.eventName
+    }
+
+
+
+}
 

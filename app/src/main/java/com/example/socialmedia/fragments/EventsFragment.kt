@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Display.Mode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,15 +20,23 @@ import com.example.socialmedia.CreateEventFragment
 import com.example.socialmedia.ModelClass
 import com.example.socialmedia.R
 import com.example.socialmedia.adapter.EventAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.core.EventTarget
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 
 class EventsFragment : Fragment() {
 
-        var codeExecuted = false
-        public lateinit var ii:MutableList<ModelClass>
-        public lateinit var myRecyclerView:RecyclerView
-        private lateinit var myAdapter:EventAdapter
+//        var codeExecuted = false
+    public lateinit var ii:MutableList<ModelClass>
+    public lateinit var myRecyclerView:RecyclerView
+    private lateinit var myAdapter:EventAdapter
+    private val db = FirebaseFirestore.getInstance()
+    private lateinit var adapter:EventAdapter
+    private val eventsRef = db.collection("events")
+
 
     lateinit var imageUri: Uri
 //    val dialog = context?.let { it1 -> Dialog(it1) }
@@ -39,17 +48,17 @@ class EventsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.events_fragment,container,false)
 //        handleEvent(view)
-        setAdapter(view)
+        setFirebaseAdapter(view)
 //        setAdapter(view)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(!codeExecuted) {
-            handleEvent(view)
-            codeExecuted = true
-        }
+//        if(!codeExecuted) {
+        handleEvent(view)
+//            codeExecuted = true
+//        }
         val createEvent:Button = view.findViewById<Button>(R.id.create_event)
         createEvent.setOnClickListener() {
             val fragM = fragmentManager?.beginTransaction()
@@ -57,10 +66,6 @@ class EventsFragment : Fragment() {
             fragM?.addToBackStack(null)
             fragM?.commit()
             // Get a reference to the Firebase Storage instance
-
-
-
-
 
 //            val md = ModelClass()
 //            md.img = Uri.parse("https://images.unsplash.com/photo-1599580506193-fef9dc35b205?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80")
@@ -89,33 +94,33 @@ class EventsFragment : Fragment() {
             val email = user?.email
             createEvent.isVisible = email == "kanha@gmail.com"
 
-            if(email == "kanha@gmail.com" || email=="jkjk@gmail.com") {
-                val storage = FirebaseStorage.getInstance()
+//            if(email == "kanha@gmail.com" || email=="jkjk@gmail.com") {
+//                val storage = FirebaseStorage.getInstance()
 
 
 // Get a reference to the folder that contains the images
-                val imagesRef = storage.getReference("event images/")
+//                val imagesRef = storage.getReference("event images/")
 
 // Get a list of all the items (images) in the folder
-                imagesRef.listAll()
-                    .addOnSuccessListener { listResult ->
-                        // Loop through all the items (images) in the folder
-                        for (item in listResult.items) {
-                            // Get the download URL of the item (image)
-                            item.downloadUrl
-                                .addOnSuccessListener { url ->
-                                    val md = ModelClass()
-                                    md.img = url
-                                    Toast.makeText(context,url.toString(),Toast.LENGTH_SHORT).show()
-                                    md.eventName = "gotted"
-                                    ii.add(md)
-                                    println(url)
-                                    println(item.path)
-                                    myAdapter.notifyItemInserted(ii.size-1)
-                                }
-                        }
-                    }
-            }
+//                imagesRef.listAll()
+//                    .addOnSuccessListener { listResult ->
+//                        // Loop through all the items (images) in the folder
+//                        for (item in listResult.items) {
+//                            // Get the download URL of the item (image)
+//                            item.downloadUrl
+//                                .addOnSuccessListener { url ->
+//                                    val md = ModelClass()
+//                                    md.img = url
+//                                    Toast.makeText(context,url.toString(),Toast.LENGTH_SHORT).show()
+//                                    md.eventName = "gotted"
+//                                    ii.add(md)
+//                                    println(url)
+//                                    println(item.path)
+//                                    myAdapter.notifyItemInserted(ii.size-1)
+//                                }
+//                        }
+//                    }
+//            }
         }
 //         if(user == ){
 //             createEvent.isVisible = true
@@ -125,17 +130,37 @@ class EventsFragment : Fragment() {
 
     }
 
-    private fun setAdapter(view: View) {
-        myRecyclerView =  view.findViewById<RecyclerView>(R.id.listRV)
-        val md = ModelClass()
-        md.img = Uri.parse("https://images.unsplash.com/photo-1599580506193-fef9dc35b205?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80")
-        md.eventName = "first event"
-        ii= arrayListOf(md)
+//    private fun setAdapter(view: View) {
+//        myRecyclerView =  view.findViewById<RecyclerView>(R.id.listRV)
+//        val md = ModelClass()
+//        md.img = Uri.parse("https://images.unsplash.com/photo-1599580506193-fef9dc35b205?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80")
+//        md.eventName = "first event"
+//        ii= arrayListOf(md)
+//
+//        myAdapter = EventAdapter(ii)
+//        myRecyclerView.adapter = myAdapter
+////        myAdapter.setList((activity as HomeActivity).myDataList)
+//        myRecyclerView.layoutManager = LinearLayoutManager(context)
+//    }
+    private fun setFirebaseAdapter(view: View) {
+        val query = eventsRef.orderBy("eventName",Query.Direction.ASCENDING)
+        val options = FirestoreRecyclerOptions.Builder<ModelClass>()
+            .setQuery(query, ModelClass::class.java)
+            .build()
+    adapter = EventAdapter(options)
+    myRecyclerView =  view.findViewById<RecyclerView>(R.id.listRV)
+    myRecyclerView.adapter = adapter
+    myRecyclerView.layoutManager = LinearLayoutManager(context)
+    }
 
-        myAdapter = EventAdapter(ii)
-        myRecyclerView.adapter = myAdapter
-//        myAdapter.setList((activity as HomeActivity).myDataList)
-        myRecyclerView.layoutManager = LinearLayoutManager(context)
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 
 
