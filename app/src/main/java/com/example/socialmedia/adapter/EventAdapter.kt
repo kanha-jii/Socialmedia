@@ -1,6 +1,5 @@
 package com.example.socialmedia.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,8 @@ import com.example.socialmedia.R
 import com.example.socialmedia.loadImage
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.firebase.ui.firestore.ObservableSnapshotArray
+import com.google.firebase.firestore.DocumentSnapshot
 
 /*class EventAdapter(private val items:MutableList<ModelClass>) : RecyclerView.Adapter<MyViewHolder>() {
 
@@ -62,14 +63,18 @@ interface MyViewHolderItemClicked {
 
 class EventAdapter(options: FirestoreRecyclerOptions<ModelClass>) :
         FirestoreRecyclerAdapter<ModelClass,EventAdapter.MyViewHolder>(options) {
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
-        val eventImg = itemView.findViewById<ImageView>(R.id.itemImg)
-        val eventNam = itemView.findViewById<TextView>(R.id.itemName)
+    interface OnItemClickListener {
+        fun onItemClick(documentSnapshot: DocumentSnapshot,position: Int)
     }
+    private lateinit var mlistener:OnItemClickListener
 
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mlistener = listener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolder(view,mlistener,snapshots)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: ModelClass) {
         // bind data to views inside view holder
@@ -79,7 +84,24 @@ class EventAdapter(options: FirestoreRecyclerOptions<ModelClass>) :
     fun deleteItem(position: Int) {
         snapshots.getSnapshot(position).reference.delete()
     }
+    class MyViewHolder(
+        itemView: View,
+        listener: OnItemClickListener,
+        snapshot: ObservableSnapshotArray<ModelClass>
+    ) : RecyclerView.ViewHolder(itemView) {
+        val eventImg: ImageView = itemView.findViewById<ImageView>(R.id.itemImg)
+        init {
+            itemView.setOnClickListener {
+                val position = absoluteAdapterPosition
+                if(position != RecyclerView.NO_POSITION && listener != null) {
 
+                    listener.onItemClick(snapshot.getSnapshot(position),position)
+                }
+            }
+        }
+        val eventNam: TextView = itemView.findViewById<TextView>(R.id.itemName)
+
+    }
 
 }
 

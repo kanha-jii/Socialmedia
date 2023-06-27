@@ -12,15 +12,23 @@
         android:theme="@style/Theme.SocialMedia"
         tools:targetApi="31">
         <activity
+            android:name=".CreatePost"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetails"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreenNew"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,16 +50,6 @@
             android:name=".LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-       <!-- <activity
-            android:name=".SplashScreen"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
     </application>
 
 </manifest>

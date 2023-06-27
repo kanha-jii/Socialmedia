@@ -6,8 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class AccountFragment : Fragment(), View.OnClickListener  {
     override fun onCreateView(
@@ -20,6 +26,22 @@ class AccountFragment : Fragment(), View.OnClickListener  {
         btn.setOnClickListener(this)
         val btn2: Button = view.findViewById(R.id.btn_out)
         btn2.setOnClickListener(this)
+        val db = Firebase.firestore
+        val collectionRef = db.collection("users").orderBy("priority")
+        collectionRef.get()
+            .addOnSuccessListener { querySnapshot ->
+                for (document in querySnapshot.documents) {
+                    val myField = document.getString("current-user")
+                    if(FirebaseAuth.getInstance().currentUser?.uid.toString() == myField) {
+                        Toast.makeText(context, "uid matched", Toast.LENGTH_SHORT).show()
+                        setData(view,document)
+                        break
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(context, "snapshot failed", Toast.LENGTH_SHORT).show()
+            }
         return view
     }
 
@@ -37,7 +59,10 @@ class AccountFragment : Fragment(), View.OnClickListener  {
             }
         }
     }
+    private fun setData(view: View,document:DocumentSnapshot) {
+        view.findViewById<ImageView>(R.id.profile_image).loadImage(document["image"].toString())
 
+    }
 
 //    fun openProfile(view: View) {
 //        val intent = Intent(activity?.application ,CreateProfile::class.java)

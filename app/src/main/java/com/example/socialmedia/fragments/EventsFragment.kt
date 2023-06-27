@@ -1,12 +1,14 @@
 package com.example.socialmedia.fragments
 
 
+import android.content.Intent
 import android.icu.lang.UCharacter.IndicPositionalCategory.*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,11 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.socialmedia.CreateEventFragment
+import com.example.socialmedia.EventDetails
 import com.example.socialmedia.ModelClass
 import com.example.socialmedia.R
 import com.example.socialmedia.adapter.EventAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -99,6 +103,17 @@ class EventsFragment() : Fragment() {
         if(president) {
             itemTouchHelper.attachToRecyclerView(myRecyclerView)
         }
+        adapter.setOnItemClickListener(object : EventAdapter.OnItemClickListener {
+            override fun onItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
+                Toast.makeText(context, documentSnapshot.id, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, documentSnapshot.getString("EventImage"), Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, documentSnapshot.getString("EventName"), Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity,EventDetails::class.java)
+                intent.putExtra("eventName",documentSnapshot.get("eventName").toString())
+                startActivity(intent)
+            }
+
+        })
     }
 
 

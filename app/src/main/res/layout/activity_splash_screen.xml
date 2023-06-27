@@ -4,45 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen">
-
+    android:layout_gravity="center"
+    android:background="@drawable/themem"
+    android:layerType="none"
+    android:visibility="visible"
+    tools:context=".SplashScreen"
+    tools:visibility="visible"
+    >
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/baseline_adb_24"
+        android:id="@+id/imageView5"
+        android:layout_width="216dp"
+        android:layout_height="229dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/splash_name"
-        android:layout_width="254dp"
-        android:layout_height="37dp"
-        android:text="SOCIAL MEDIA APP"
-        android:textColor="@color/all_red"
-        android:textSize="30sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.832" />
+        app:layout_constraintVertical_bias="0.057"
+        app:srcCompat="@drawable/glamsbo" />
 
     <TextView
-        android:id="@+id/team_geeks"
+        android:id="@+id/textg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TEAM GEEKS"
-        android:textColor="@color/all_red"
-        android:textSize="15sp"
+        android:layout_marginStart="24dp"
+        android:backgroundTint="#322967"
+        android:gravity="center"
+        android:text=" Welcome"
+        android:textColor="#000000"
+        android:textColorHighlight="#B6AAC3"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.542"
+        tools:ignore="TextContrastCheck" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:backgroundTint="#322967"
+        android:gravity="center"
+        android:text=" to"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.917"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:backgroundTint="#322967"
+        android:gravity="center"
+        android:text=" GLAMs Book"
+        android:textColor="#000000"
+        android:textColorHighlight="#B6AAC3"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.871"
+        tools:ignore="TextContrastCheck" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

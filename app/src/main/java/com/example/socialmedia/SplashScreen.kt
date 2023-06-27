@@ -21,14 +21,14 @@ class SplashScreen : AppCompatActivity() {
 
         // HERE WE ARE TAKING THE REFERENCE OF OUR IMAGE
         // SO THAT WE CAN PERFORM ANIMATION USING THAT IMAGE
-        val backgroundImage: ImageView = findViewById(R.id.imageView)
-        val simpleText = findViewById<TextView>(R.id.splash_name)
-        val cg = findViewById<TextView>(R.id.team_geeks)
-        val animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
-        simpleText.startAnimation(animationFadeOut)
-        cg.startAnimation(animationFadeOut)
-        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide)
-        backgroundImage.startAnimation(slideAnimation)
+//        val backgroundImage: ImageView = findViewById(R.id.imageView)
+//        val simpleText = findViewById<TextView>(R.id.splash_name)
+//        val cg = findViewById<TextView>(R.id.team_geeks)
+//        val animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+//        simpleText.startAnimation(animationFadeOut)
+//        cg.startAnimation(animationFadeOut)
+//        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide)
+//        backgroundImage.startAnimation(slideAnimation)
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
@@ -36,6 +36,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 1500)
     }
 }

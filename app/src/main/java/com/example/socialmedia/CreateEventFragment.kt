@@ -34,7 +34,7 @@ class CreateEventFragment :Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.create,container,false)
-        val imgView = view.findViewById<ImageView>(R.id.imageView2)
+        val imgView = view.findViewById<ImageView>(R.id.imageView)
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 // There are no request codes
@@ -111,7 +111,7 @@ class CreateEventFragment :Fragment() {
 //                    Toast.makeText(context,currentTime.toString(),Toast.LENGTH_LONG).show()
                 }
 //                 Picasso.get().load(imageUri).into(imgView)
-                val img2 = view.findViewById<ImageView>(R.id.imageView2)
+                val img2 = view.findViewById<ImageView>(R.id.imageView)
                 context?.let { Glide.with(it).load(imageUri).into(img2) }
                 val btn = view.findViewById<Button>(R.id.upload)
                 btn.setOnClickListener {

@@ -14,10 +14,12 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var email:EditText
+    private val ff: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var pass:EditText
     private lateinit var confirmPass:EditText
     private lateinit var progressbar:ProgressBar
@@ -70,7 +72,16 @@ class RegisterActivity : AppCompatActivity() {
                             saveInfo(emailStr, passStr)
                             val intent  = Intent(this,MainActivity::class.java)
                             startActivity(intent)
-
+//                            val profile: HashMap<String, String> = HashMap<String, String>()
+//                            profile["current-user"] = FirebaseAuth.getInstance().currentUser?.uid.toString()
+//                            profile["image"] = ""
+//                            profile["name"] = ""
+//                            profile["roll"] = ""
+//                            profile["course"] = ""
+//                            profile["year"] = ""
+//                            profile["about"] = ""
+//                            val docRef = ff.collection("users").document()
+//                            docRef.set(profile)
                         } else {
                             val msg = task.exception!!.toString()
                             Toast.makeText(this, msg, Toast.LENGTH_LONG).show()

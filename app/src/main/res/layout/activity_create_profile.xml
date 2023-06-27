@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/image1"
     android:gravity="center"
     tools:context=".CreateProfile">
 
@@ -13,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create profile"
+        android:fontFamily="serif-monospace"
+        android:textFontWeight="@integer/material_motion_duration_medium_2"
         android:textSize="30sp"
         android:textColor="@color/all_red"
         android:textAlignment="center"
@@ -33,50 +36,89 @@
             android:clickable="true"
             />
     </androidx.cardview.widget.CardView>
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="name"
-        android:layout_margin="4dp"
-        android:textColor="@color/black"
-        android:id="@+id/et_name_cp"/>
-    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="User name">
+
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_name_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="course"
-        android:layout_margin="4dp"
-        android:textColor="@color/black"
-        android:id="@+id/et_course_cp"/>
-    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="University Roll">
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_roll_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Branch(optional)"
-        android:layout_margin="4dp"
-        android:textColor="@color/black"
-        android:id="@+id/et_branch_cp"/>
-    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Course - Branch">
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_branch_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="persuing year"
-        android:layout_margin="4dp"
-        android:textColor="@color/black"
-        android:id="@+id/et_year_cp"/>
-    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Year">
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_year_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="about"
-        android:layout_margin="4dp"
-        android:textColor="@color/black"
-        android:id="@+id/et_about_cp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Course - Branch">
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_bio_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
+        android:id="@+id/btn_cp"
+        android:theme="@style/cp_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round"
         android:text="save profile"
-        android:background="@color/orange"
-        android:textSize="20sp"
-        android:id="@+id/btn_cp"
-        />
-
-
-
+        android:textSize="20sp" />
 </LinearLayout>

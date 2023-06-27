@@ -11,7 +11,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         setFragment(HomeFragment())
         val bottomNa = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNa.setOnItemSelectedListener {
